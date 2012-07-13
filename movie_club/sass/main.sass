@@ -48,11 +48,50 @@
 // HTML5 boilerplate defaults
 @import plugins/reset
 
-//@import plugins/fancybox
+@import plugins/select2
 
 // Import other files here
 @import shared/forms
 @import shared/buttons
 
-// Print styles, keep these at the bottom
-@import plugins/print
+body
+  background: url(../images/head-fade.png) left top repeat-x, url(../images/foot-fade.png) left bottom repeat-x, url(../images/site-bg.png) repeat
+
+.app-title
+  display: block
+  @include image-replace
+  width: 264px
+  height: 84px
+  margin: 0 auto
+  background: url(../images/site-logo.png) no-repeat
+
+.search-area
+  width: 70% 
+  margin: 0 auto
+  form
+    position: relative
+  .controlHolder
+    width: 100%
+    padding: 0 47px 0 0
+  #movie-search
+    width: 100%
+  input[type=submit]
+    display: block
+    position: absolute
+    padding: 0
+    margin: 0
+    width: 37px
+    height: 37px
+    border: 0
+    @include image-replace
+    background: url(../images/search-icon.png) no-repeat
+
+
+
+.select2-result
+  .movie-item
+    img
+      display: inline-block
+      vertical-align: top
+      max-width: 50px
+      margin: 0 10px 0 0

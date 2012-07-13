@@ -1,1 +1,16 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <div class="search-area">
+            <form action="/" method="post">
+                {% csrf_token %}
+                <div class="controlHolder"><input type="text" id="movie-search" name="movie-id"></div>
+                <input type="submit" value="Search">
+            </form>
+        </div>  
+    {% else %}
+        <a href="{% url socialauth_begin 'google-oauth2' %}">Log in</a>
+    {% endif %}
+{% endblock %}

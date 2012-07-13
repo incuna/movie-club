@@ -56,6 +56,13 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+LOGIN_REDIRECT_URL = '/'
+
+AUTH_PROFILE_MODULE = 'profiles.Profile'
 ROOT_URLCONF = 'movie_club.urls'
 SECRET_KEY = '+%euhby2%5^@%dv@u7$_s9gpz77a-va++eg&amp;7&amp;jpp7+5+9h^8y'
 SITE_ID = 1
@@ -72,6 +79,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'gunicorn',
     'raven.contrib.django',
+    'social_auth',
 
     # Django
     'django.contrib.auth',
@@ -113,3 +121,8 @@ LOGGING = {
 DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}
 INTERNAL_IPS = ('127.0.0.1',)
 
+# Social auth
+GOOGLE_OAUTH2_CLIENT_ID = '906873610360.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET = 'g1zuOBlx25xB3FsYyJLTxDEe'
+GOOGLE_WHITE_LISTED_DOMAINS = ['incuna.com']
+SOCIAL_AUTH_USER_MODEL = 'auth.User'
