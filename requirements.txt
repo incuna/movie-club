@@ -1,0 +1,10 @@
+django>=1.4
+django-compressor>=1.1.2
+django-crispy-forms>=1.1.4
+django-debug-toolbar>=0.9.4
+django-extensions==0.8
+dj-database-url>=0.2
+gunicorn>=0.14.3
+psycopg2>=2.4.5
+raven>=1.9.1
+South>=0.7.5

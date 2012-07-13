@@ -1,0 +1,115 @@
+# Django settings for movie_club project.
+import os
+
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+import dj_database_url
+
+
+DIRNAME = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+
+DEBUG = bool(os.environ.get('DEBUG', False))
+DEVELOPMENT_SITE = bool(os.environ.get('DEVELOPMENT_SITE', False))
+
+DATABASES = {'default': dj_database_url.config(default='postgres://localhost/movie_club')}
+
+ADMINS = (('Admin', 'bugs@incuna.com'),)
+MANAGERS = ADMINS
+ADMIN_EMAILS = zip(*ADMINS)[1]
+SERVER_EMAIL = DEFAULT_FROM_EMAIL = 'info@incuna.com'
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+
+TIME_ZONE = 'UTC'
+USE_L10N = True  # Locale
+USE_TZ = True
+
+LANGUAGE_CODE = 'en-GB'
+USE_I18N = False  # Internationalization
+
+# Static
+MEDIA_ROOT = os.path.join(DIRNAME, 'client_media')
+MEDIA_URL = '/client_media/'
+STATIC_ROOT = os.path.join(DIRNAME, 'static_media')
+STATIC_URL = '/static/'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DIRS = (os.path.join(DIRNAME, 'templates'))
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'django.core.context_processors.request',
+)
+
+MIDDLEWARE_CLASSES = (
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
+    'django.middleware.http.ConditionalGetMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
+
+ROOT_URLCONF = 'movie_club.urls'
+SECRET_KEY = '+%euhby2%5^@%dv@u7$_s9gpz77a-va++eg&amp;7&amp;jpp7+5+9h^8y'
+SITE_ID = 1
+WSGI_APPLICATION = 'movie_club.wsgi.application'
+
+INSTALLED_APPS = (
+    # Project Apps
+    'movie_club',
+
+    # Libraries
+    'crispy_forms',
+    'south',
+    'debug_toolbar',
+    'django_extensions',
+    'gunicorn',
+    'raven.contrib.django',
+
+    # Django
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.admin',
+)
+
+SENTRY_DSN = 'http://1e7382d8d03d471eb384c7752f0a30ee:6fe16fb822554283b11d14d0af7bd9fd@sentry.incuna.com/20'
+SENTRY_TESTING = DEBUG
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
+
+# Debug Toolbar
+DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}
+INTERNAL_IPS = ('127.0.0.1',)
+
