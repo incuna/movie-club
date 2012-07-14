@@ -2,6 +2,7 @@
 import os
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+from django.core.urlresolvers import reverse_lazy
 import dj_database_url
 
 
@@ -61,6 +62,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = reverse_lazy('login')
 
 AUTH_PROFILE_MODULE = 'profiles.Profile'
 ROOT_URLCONF = 'movie_club.urls'
