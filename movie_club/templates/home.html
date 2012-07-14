@@ -6,6 +6,7 @@
         <div class="search-area">
             <form action="/" method="post">
                 {% csrf_token %}
+                <input type="hidden" id="movie-data" name="movie-data">
                 <div class="controlHolder"><input type="text" id="movie-search" name="movie-id"></div>
                 <input type="submit" value="Search">
             </form>
