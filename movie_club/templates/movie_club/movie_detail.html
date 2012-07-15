@@ -4,7 +4,7 @@
 <div class="movie">
     <h2>{{ movie }}</h2>
     <p>Submitted by: {{ movie.user.get_full_name }}</p>
-    <span>{{ movie.score }}</span>
+    <span>{{ movie.score }}/10</span>
     <p>{{ movie.synopsis }}</p>
     <div id="rating">
         <form action="" method="post">
