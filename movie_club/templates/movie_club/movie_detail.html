@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="movie">
+    <h2>{{ movie }}</h2>
+    <p>Submitted by: {{ movie.user.get_full_name }}</p>
+    <span>{{ movie.score }}</span>
+    <p>{{ movie.synopsis }}</p>
+    <div id="rating">
+        <form action="" method="post">
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}

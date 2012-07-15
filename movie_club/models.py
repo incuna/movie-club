@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import Avg
 from django.template.defaultfilters import slugify
 
 
@@ -25,6 +26,11 @@ class Movie(models.Model):
 
     def get_absolute_url(self):
         return reverse('movie-detail', kwargs={'slug': self.slug})
+
+    @property
+    def score(self):
+        avg = Rating.objects.filter(movie=self).aggregate(Avg('score'))['score__avg']
+        return avg or 0
 
     @classmethod
     def generate_slug(self, name):

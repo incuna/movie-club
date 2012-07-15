@@ -4,12 +4,13 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import DetailView, ListView, TemplateView
+from django.views.generic import CreateView, ListView, TemplateView
 from django.views.generic.base import View
 from social_auth.backends.exceptions import AuthFailed
 from social_auth.views import complete
 
-from .models import Movie
+from .forms import RatingForm
+from .models import Movie, Rating
 
 
 class AuthComplete(View):
@@ -27,8 +28,25 @@ class LoginError(View):
         return HttpResponse(status=401)
 
 
-class MovieDetail(DetailView):
-    model = Movie
+class MovieDetail(CreateView):
+    form_class = RatingForm
+    model = Rating
+    success_url = '.'
+    template_name = 'movie_club/movie_detail.html'
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.movie = self.get_movie()
+        self.object.save()
+        return super(MovieDetail, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(MovieDetail, self).get_context_data(**kwargs)
+        context['movie'] = self.get_movie()
+        return context
+
+    def get_movie(self):
+        return Movie.objects.get(slug=self.kwargs.get('slug'))
 
 
 class MovieList(ListView):
