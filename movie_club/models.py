@@ -18,7 +18,7 @@ class Movie(models.Model):
         return reverse('movie-detail', kwargs={'slug': self.slug})
 
     @classmethod
-    def generate_slug(name):
+    def generate_slug(self, name):
         return name.lower()
 
 
