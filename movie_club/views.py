@@ -6,7 +6,6 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedire
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, ListView
 from django.views.generic.base import View
-from django.views.generic.edit import BaseFormView
 from social_auth.backends.exceptions import AuthFailed
 from social_auth.views import complete
 
@@ -36,7 +35,7 @@ class MovieList(ListView):
     model = Movie
 
 
-class SubmitMovie(BaseFormView):
+class SubmitMovie(View):
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
         return super(SubmitMovie, self).dispatch(request, *args, **kwargs)
