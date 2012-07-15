@@ -3,7 +3,6 @@ from django.conf.urls import *
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.views.generic import TemplateView
 
 from .views import AuthComplete, LoginError, MovieDetail, SubmitMovie
 
@@ -11,7 +10,7 @@ from .views import AuthComplete, LoginError, MovieDetail, SubmitMovie
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', TemplateView.as_view(template_name='home.html')),
+    url(r'^$', SubmitMovie.as_view()),
     url(r'^movies/$', SubmitMovie.as_view(), name='movie-create'),
     url(r'^movies/(?P<slug>[\w-]+)/$', MovieDetail.as_view(), name='movie-detail'),
     url(r'^login-error/$', LoginError.as_view()),

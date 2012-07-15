@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.base import View
 from social_auth.backends.exceptions import AuthFailed
 from social_auth.views import complete
@@ -35,7 +35,9 @@ class MovieList(ListView):
     model = Movie
 
 
-class SubmitMovie(View):
+class SubmitMovie(TemplateView):
+    template_name = 'home.html'
+
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
         return super(SubmitMovie, self).dispatch(request, *args, **kwargs)
@@ -52,6 +54,7 @@ class SubmitMovie(View):
                 thumbnail=request.POST['poster_path']
             )
         except Exception as e:
+            # TODO: Tighten up what this catches
             data = {'error': True, 'content': e}
         else:
             data = {'error': False, 'content': movie.get_absolute_url()}
