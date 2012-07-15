@@ -1,5 +1,6 @@
-from django.db import models
+from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.db import models
 from django.template.defaultfilters import slugify
 
 
@@ -11,6 +12,13 @@ class Movie(models.Model):
     thumbnail = models.CharField(max_length=255)
     where = models.CharField(max_length=255, null=True, blank=True)
     when = models.DateTimeField(null=True, blank=True)
+
+    def __getattribute__(self, name):
+        # TODO: Decide on a better way to do this.
+        # Do we really need to generate this? Silly API.
+        if name == 'thumbnail':
+            return settings.TMDB_IMAGE_URL + 'w500' + object.__getattribute__(self, name)
+        return object.__getattribute__(self, name)
 
     def __unicode__(self):
         return self.name
