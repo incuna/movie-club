@@ -60,6 +60,9 @@ class Rating(models.Model):
     user = models.ForeignKey('auth.User')
     score = models.IntegerField()
 
+    class Meta:
+        unique_together = ('movie', 'user')
+
     def __unicode__(self):
         return self.score
 
