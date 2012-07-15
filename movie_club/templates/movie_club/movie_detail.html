@@ -8,6 +8,7 @@
     <p>{{ movie.synopsis }}</p>
     <div id="rating">
         <form action="" method="post">
+            {% csrf_token %}
             {{ form }}
             <input type="submit" value="Submit">
         </form>
