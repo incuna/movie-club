@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
 
 
 class Movie(models.Model):
@@ -19,7 +20,21 @@ class Movie(models.Model):
 
     @classmethod
     def generate_slug(self, name):
-        return name.lower()
+        count = 1
+        slug = slugify(name)
+
+        def _get_query(**kwargs):
+            if Movie.objects.filter(**kwargs).count():
+                return True
+
+        while _get_query(slug=slug):
+            slug = slugify(u'{0}-{1}'.format(name, count))
+            # make sure the slug is not too long
+            while len(slug) > Movie._meta.get_field('slug').max_length:
+                name = name[:-1]
+                slug = slugify(u'{0}-{1}'.format(name, count))
+            count = count + 1
+        return slug
 
 
 class Rating(models.Model):
