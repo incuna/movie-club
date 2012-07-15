@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 
 
 class Movie(models.Model):
-    users = models.ManyToManyField('auth.User', through='Rating')
+    user = models.ForeignKey('auth.User')
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     tmdb_id = models.CharField(max_length=255)

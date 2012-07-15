@@ -48,6 +48,7 @@ class SubmitMovie(TemplateView):
 
         try:
             movie = Movie.objects.create(
+                user=request.user,
                 name=request.POST['title'],
                 slug=Movie.generate_slug(request.POST['title']),
                 tmdb_id=request.POST['id'],
