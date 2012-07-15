@@ -34,7 +34,9 @@ class Movie(models.Model):
     @property
     def score(self):
         avg = Rating.objects.filter(movie=self).aggregate(Avg('score'))['score__avg']
-        return avg or 0
+        if avg is not None:
+            return round(avg, 1)
+        return 0
 
     @classmethod
     def generate_slug(self, name):
