@@ -10,7 +10,7 @@ class Movie(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     tmdb_id = models.CharField(max_length=255)
-    thumbnail = models.CharField(max_length=255)
+    poster = models.CharField(max_length=255)
     where = models.CharField(max_length=255, null=True, blank=True)
     when = models.DateTimeField(null=True, blank=True)
 
@@ -26,6 +26,10 @@ class Movie(models.Model):
 
     def get_absolute_url(self):
         return reverse('movie-detail', kwargs={'slug': self.slug})
+
+    @property
+    def thumbnail(self, size):
+        return settings.TMDB_IMAGE_URL + 'w{0}'.format(size) + self.poster
 
     @property
     def score(self):
