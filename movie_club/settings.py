@@ -4,6 +4,7 @@ import os
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 from django.core.urlresolvers import reverse_lazy
 import dj_database_url
+from S3 import CallingFormat
 
 
 DIRNAME = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
@@ -26,11 +27,20 @@ USE_TZ = True
 LANGUAGE_CODE = 'en-GB'
 USE_I18N = False  # Internationalization
 
+# AWS
+if not DEBUG:
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    S3_URL = 'http://{0}.s3.amazonaws.com/'.format(AWS_STORAGE_BUCKET_NAME)
+
 # Static
 MEDIA_ROOT = os.path.join(DIRNAME, 'client_media')
 MEDIA_URL = '/client_media/'
 STATIC_ROOT = os.path.join(DIRNAME, 'static_media')
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' if DEBUG else S3_URL
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
