@@ -1,3 +1,39 @@
+// jQuery stringify
+jQuery.extend({
+    stringify  : function stringify(obj) {
+        if ("JSON" in window) {
+            return JSON.stringify(obj);
+        }
+
+        var t = typeof (obj);
+        if (t != "object" || obj === null) {
+            // simple data type
+            if (t == "string") obj = '"' + obj + '"';
+
+            return String(obj);
+        } else {
+            // recurse array or object
+            var n, v, json = [], arr = (obj && obj.constructor == Array);
+
+            for (n in obj) {
+                v = obj[n];
+                t = typeof(v);
+                if (obj.hasOwnProperty(n)) {
+                    if (t == "string") {
+                        v = '"' + v + '"';
+                    } else if (t == "object" && v !== null){
+                        v = jQuery.stringify(v);
+                    }
+
+                    json.push((arr ? "" : '"' + n + '":') + String(v));
+                }
+            }
+
+            return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+        }
+    }
+});
+
 $(function() {
 
     var apiKey = '1db0674dd30f5cb1a979238b9a78b6c4';
@@ -11,7 +47,6 @@ $(function() {
         success: function(data) {
             var movieImageUrl = data.images.base_url,
                 posterSize = data.images.poster_sizes[0];
-            console.log(data.images);
             initSearch(movieImageUrl, posterSize);
         }
     });
@@ -26,6 +61,7 @@ $(function() {
             return markup;
         };
         var searchSelectionFormat = function(movie) {
+            $('#movie-data').val(jQuery.stringify(movie));
             var markup = '<span class="movie-item-selected">' + movie.title + '</span>';
             return markup;
         };
@@ -52,10 +88,7 @@ $(function() {
                 }
             },
             formatResult: searchResultFormat,
-            formatSelection: searchSelectionFormat,
-            initSelection : function (element) {
-                console.log('hello');
-            }
+            formatSelection: searchSelectionFormat
         });
 
     };

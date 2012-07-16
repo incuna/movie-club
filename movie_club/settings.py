@@ -2,7 +2,9 @@
 import os
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+from django.core.urlresolvers import reverse_lazy
 import dj_database_url
+from S3 import CallingFormat
 
 
 DIRNAME = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
@@ -25,11 +27,20 @@ USE_TZ = True
 LANGUAGE_CODE = 'en-GB'
 USE_I18N = False  # Internationalization
 
+# AWS
+if not DEBUG:
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    S3_URL = 'http://{0}.s3.amazonaws.com/'.format(AWS_STORAGE_BUCKET_NAME)
+
 # Static
 MEDIA_ROOT = os.path.join(DIRNAME, 'client_media')
 MEDIA_URL = '/client_media/'
 STATIC_ROOT = os.path.join(DIRNAME, 'static_media')
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' if DEBUG else S3_URL
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -61,6 +72,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = reverse_lazy('login')
 
 AUTH_PROFILE_MODULE = 'profiles.Profile'
 ROOT_URLCONF = 'movie_club.urls'
@@ -121,8 +133,11 @@ LOGGING = {
 DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}
 INTERNAL_IPS = ('127.0.0.1',)
 
+# Movie Club
+TMDB_IMAGE_URL = 'http://cf2.imgobject.com/t/p/'
+
 # Social auth
-GOOGLE_OAUTH2_CLIENT_ID = '906873610360.apps.googleusercontent.com'
-GOOGLE_OAUTH2_CLIENT_SECRET = 'g1zuOBlx25xB3FsYyJLTxDEe'
+GOOGLE_OAUTH2_CLIENT_ID = os.environ['GOOGLE_OAUTH2_CLIENT_ID']
+GOOGLE_OAUTH2_CLIENT_SECRET = os.environ['GOOGLE_OAUTH2_CLIENT_SECRET']
 GOOGLE_WHITE_LISTED_DOMAINS = ['incuna.com']
 SOCIAL_AUTH_USER_MODEL = 'auth.User'
