@@ -77,7 +77,7 @@ class SubmitMovie(TemplateView):
             slug=Movie.generate_slug(data['title']),
             overview=all_data['overview'],
             tmdb_id=data['id'],
-            thumbnail=data['poster_path'],
+            poster=data['poster_path'],
             release_date=datetime.strptime(all_data['release_date'], '%Y-%m-%d')
         )
         return HttpResponseRedirect(reverse('movie-list'))
