@@ -9,6 +9,7 @@ class Movie(models.Model):
     user = models.ForeignKey('auth.User')
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
+    overview = models.TextField()
     tmdb_id = models.CharField(max_length=255)
     poster = models.CharField(max_length=255)
     where = models.CharField(max_length=255, null=True, blank=True)

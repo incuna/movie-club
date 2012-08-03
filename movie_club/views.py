@@ -66,6 +66,7 @@ class SubmitMovie(TemplateView):
             user=request.user,
             name=data['title'],
             slug=Movie.generate_slug(data['title']),
+            overview=data['overview'],
             tmdb_id=data['id'],
             thumbnail=data['poster_path']
         )
