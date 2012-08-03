@@ -55,7 +55,7 @@
 @import shared/buttons
 
 body
-  background: url(../images/head-fade.png) left top repeat-x, url(../images/foot-fade.png) left bottom repeat-x, url(../images/site-bg.png) repeat
+  background: url(../images/site-bg.png) repeat
 
 .app-title
   display: block
@@ -88,8 +88,8 @@ body
     @include image-replace
     background: url(../images/search-icon.png) no-repeat
 
-
-
+.select2-container
+  color: #111
 .select2-result
   .movie-item
     img
@@ -97,3 +97,51 @@ body
       vertical-align: top
       max-width: 50px
       margin: 0 10px 0 0
+
+.clearfix
+  @include clearfix
+
+
+.movie-list
+  border:
+    top: 1px solid #1a1a1a
+    bottom: 1px solid #4b4b4b
+  .movie-item
+    @extend .clearfix
+    padding: 5%
+    border:
+      top: 1px solid #4b4b4b
+      bottom: 1px solid #1a1a1a
+    color: #fff
+    cursor: pointer
+  .movie-cover
+    width: 20%
+    float: left
+    margin: 0 3% 0 0
+    img
+      max-width: 100%
+  .movie-title
+    color: #fff
+    font:
+      size: 16px
+      weight: bold
+    text-decoration: none
+  .movie-rating
+    display: block
+    font:
+      size: 16px
+      style: italic
+
+  .movie-detail
+    display: none
+    float: left
+    margin: 5% 0 0 0
+
+
+  .movie-submitter
+    display: block
+    font:
+      size: 16px
+      style: italic
+  .movie-overview
+    margin: 0
