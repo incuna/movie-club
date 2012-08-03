@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Avg
 from django.template.defaultfilters import slugify
+from django.utils import timezone
 
 
 class MovieManager(models.Manager):
@@ -24,7 +25,12 @@ class Movie(models.Model):
     where = models.CharField(max_length=255, null=True, blank=True)
     when = models.DateTimeField(null=True, blank=True)
 
+    created = models.DateTimeField(default=timezone.now, editable=False)
+
     objects = MovieManager()
+
+    class Meta:
+        ordering = ('-created',)
 
     def __getattribute__(self, name):
         # TODO: Decide on a better way to do this.
