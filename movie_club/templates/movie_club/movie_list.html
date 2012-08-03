@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
+<select>
+    <option>Created: Newest -> Oldest</option>
+    <option>Created: Oldest -> Newest</option>
+    <option>Club Order</option>
+    <option>Rating: 10 -> 0</option>
+    <option>Rating: 0 -> 10</option>
+</select>
 <div class="movie-list">
 {% for movie in object_list %}
     <div class="movie-item" data-movie-url="{{ movie.get_absolute_url }}">
