@@ -4,6 +4,7 @@ import json
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib import messages
+from django.db.models import Avg
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, ListView, TemplateView
@@ -54,6 +55,23 @@ class MovieDetail(CreateView):
 
 class MovieList(ListView):
     model = Movie
+
+    def get_queryset(self):
+        qs = super(MovieList, self).get_queryset()
+        if not 'sort_by' in self.request.GET.keys():
+            return qs
+
+        rating = qs.filter(rating__isnull=False).annotate(avg_score=Avg('rating__score'))
+        filter_methods = {
+            'club_order': qs.filter(when__isnull=False).order_by('-when'),
+            'created_asc': qs.order_by('created'),
+            'rating_asc': rating.order_by('avg_score'),
+            'rating_dsc': rating.order_by('-avg_score'),
+        }
+        try:
+            return filter_methods[self.request.GET['sort_by']]
+        except KeyError:
+            return qs
 
 
 class Home(TemplateView):
