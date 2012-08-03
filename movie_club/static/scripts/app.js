@@ -93,4 +93,24 @@ $(function() {
 
     };
 
+    // Disable clicking on the movie title
+    $(document).on('click', '.movie-list .movie-item a', function(e) { e.preventDefault(); });
+
+    $(document).on('click', '.movie-list .movie-item', function() {
+        var movieList = $(this).closest('.movie-list'),
+            movieItem = $(this),
+            movieDetailURL = $(this).find('a').attr('href'),
+            movieDetailBox = $(this).find('.movie-detail');
+
+        console.log(movieDetailURL);
+        if($(this).is('.expanded')) {
+            window.location.href = movieDetailURL;
+        } else {
+            movieList.find('.expanded').removeClass('expanded').find('.movie-detail').slideUp();
+            movieDetailBox.slideDown(function() {
+                movieItem.addClass('expanded');
+            });
+        }
+    });
+
 });
