@@ -61,22 +61,17 @@ class SubmitMovie(TemplateView):
         return super(SubmitMovie, self).dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        if not request.is_ajax():
-            return HttpResponseBadRequest()
+        # if not request.is_ajax():
+        #     return HttpResponseBadRequest()
 
-        try:
-            movie = Movie.objects.create(
-                user=request.user,
-                name=request.POST['title'],
-                slug=Movie.generate_slug(request.POST['title']),
-                tmdb_id=request.POST['id'],
-                thumbnail=request.POST['poster_path']
-            )
-        except Exception as e:
-            # TODO: Tighten up what this catches
-            data = {'error': True, 'content': e}
-        else:
-            data = {'error': False, 'content': movie.get_absolute_url()}
+        print request.POST
+        data = json.loads(request.POST['movie-data'])
+        Movie.objects.create(
+            user=request.user,
+            name=data['title'],
+            slug=Movie.generate_slug(data['title']),
+            tmdb_id=data['id'],
+            thumbnail=data['poster_path']
+        )
 
-        return HttpResponse(json.dumps(data), content_type='application/json')
-
+        return HttpResponseRedirect(reverse('movie-list'))
