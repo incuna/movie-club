@@ -626,11 +626,12 @@ input,
 textarea,
 select,
 .uneditable-input {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
   width: 210px;
   height: 18px;
   padding: 4px;
@@ -639,13 +640,6 @@ select,
   color: #555555;
   border: 1px solid #555555;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-/* line 7, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-input,
-textarea,
-select,
-.uneditable-input {
-  *display: inline;
 }
 
 /* line 58, ../../sass/shared/_forms.sass */
@@ -756,15 +750,11 @@ input[type="hidden"] {
 .checkbox.inline {
   padding-top: 5px;
   margin-bottom: 0;
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-}
-/* line 7, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-.radio.inline,
-.checkbox.inline {
+  zoom: 1;
   *display: inline;
 }
 
@@ -913,14 +903,11 @@ select:focus:required:invalid {
 /* line 289, ../../sass/shared/_forms.sass */
 .help-inline {
   padding-left: 5px;
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-}
-/* line 7, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-.help-inline {
+  zoom: 1;
   *display: inline;
 }
 
@@ -946,36 +933,13 @@ select:focus:required:invalid {
 .form-horizontal .uneditable-input,
 .form-horizontal .input-prepend,
 .form-horizontal .input-append {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  margin-bottom: 0;
-}
-/* line 7, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-.form-search input,
-.form-search textarea,
-.form-search select,
-.form-search .help-inline,
-.form-search .uneditable-input,
-.form-search .input-prepend,
-.form-search .input-append,
-.form-inline input,
-.form-inline textarea,
-.form-inline select,
-.form-inline .help-inline,
-.form-inline .uneditable-input,
-.form-inline .input-prepend,
-.form-inline .input-append,
-.form-horizontal input,
-.form-horizontal textarea,
-.form-horizontal select,
-.form-horizontal .help-inline,
-.form-horizontal .uneditable-input,
-.form-horizontal .input-prepend,
-.form-horizontal .input-append {
+  zoom: 1;
   *display: inline;
+  margin-bottom: 0;
 }
 /* line 314, ../../sass/shared/_forms.sass */
 .form-search .hide,
@@ -987,15 +951,11 @@ select:focus:required:invalid {
 /* line 317, ../../sass/shared/_forms.sass */
 .form-search label,
 .form-inline label {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-}
-/* line 7, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-.form-search label,
-.form-inline label {
+  zoom: 1;
   *display: inline;
 }
 
@@ -1082,20 +1042,13 @@ button,
 input[type="submit"],
 input[type="button"],
 input[type="reset"] {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  cursor: pointer;
-}
-/* line 7, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-.button,
-button,
-input[type="submit"],
-input[type="button"],
-input[type="reset"] {
+  zoom: 1;
   *display: inline;
+  cursor: pointer;
 }
 
 /* line 57, ../../sass/main.sass */
@@ -1154,10 +1107,21 @@ body {
   background: url(../images/search-icon.png) no-repeat;
 }
 
-/* line 95, ../../sass/main.sass */
+/* line 93, ../../sass/main.sass */
 .select2-result .movie-item img {
   display: inline-block;
   vertical-align: top;
   max-width: 50px;
   margin: 0 10px 0 0;
+}
+
+/* line 101, ../../sass/main.sass */
+.movie-list {
+  border-top: 1px solid #1a1a1a;
+}
+/* line 104, ../../sass/main.sass */
+.movie-list .movie-item {
+  padding: 2%;
+  border-top: 1px solid #4b4b4b;
+  border-bottom: 1px solid #1a1a1a;
 }

@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="movie-list">
 {% for movie in object_list %}
-    <div class="movie">
-        <h2><a href="{{ movie.get_absolute_url }}">{{ movie }}</a></h2>
-        <img src="{{ movie.thumbnail }}">
-        <p>Submitted by: {{ movie.user }}</p>
-        {% if movie.rating %}
-        <p>{{ movie.rating }}/10</p>
-        {% endif %}
-        <p>{{ movie.overview }}</p>
+    <div class="movie-item">
+        <img src="{{ movie.thumbnail }}" class="movie-cover">
+        <a href="{{ movie.get_absolute_url }}" class="movie-title">{{ movie }}</a>
+        <span class="movie-rating">{% if movie.score %}{{ movie.score }}/10{% else %}Not yet rated.{% endif %}</span>
+        <div class="movie-detail">
+            <span class="movie-submitter">Submitted by: {{ movie.user }}</span>
+            <p class="movie-overview">{{ movie.overview }}</p>
+        </div>
     </div>
 {% endfor %}
+</div>
 {% endblock %}
