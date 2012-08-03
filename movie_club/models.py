@@ -12,6 +12,7 @@ class Movie(models.Model):
     overview = models.TextField()
     tmdb_id = models.CharField(max_length=255)
     poster = models.CharField(max_length=255)
+    release_date = models.DateField()
     where = models.CharField(max_length=255, null=True, blank=True)
     when = models.DateTimeField(null=True, blank=True)
 

@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 from django.conf import settings
@@ -65,17 +66,19 @@ class SubmitMovie(TemplateView):
     def post(self, request, *args, **kwargs):
         data = json.loads(request.POST['movie-data'])
 
-        url = '{0}movie/{1}?api_key={2}'.format(settings.TMDB_API_URL, data['id'], settings.TMDB_API_KEY)
+        args = (settings.TMDB_API_URL, data['id'], settings.TMDB_API_KEY)
+        url = '{0}movie/{1}?api_key={2}'.format(*args)
         r = requests.get(url)
-        overview = json.loads(r.content)['overview']
+        all_data = json.loads(r.content)
 
         Movie.objects.create(
             user=request.user,
             name=data['title'],
             slug=Movie.generate_slug(data['title']),
-            overview=overview,
+            overview=all_data['overview'],
             tmdb_id=data['id'],
-            thumbnail=data['poster_path']
+            thumbnail=data['poster_path'],
+            release_date=datetime.strptime(all_data['release_date'], '%Y-%m-%d')
         )
         return HttpResponseRedirect(reverse('movie-list'))
 
