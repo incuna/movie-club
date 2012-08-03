@@ -34,7 +34,11 @@ jQuery.extend({
     }
 });
 
+
 $(function() {
+
+    var ua = navigator.userAgent,
+        event = (ua.match(/iPhone|iPad/i)) ? "touchstart" : "click";
 
     var apiKey = '1db0674dd30f5cb1a979238b9a78b6c4';
 
@@ -93,13 +97,10 @@ $(function() {
 
     };
 
-    // Disable clicking on the movie title
-    $(document).on('click', '.movie-list .movie-item a', function(e) { e.preventDefault(); });
-
     $(document).on('click', '.movie-list .movie-item', function() {
         var movieList = $(this).closest('.movie-list'),
             movieItem = $(this),
-            movieDetailURL = $(this).find('a').attr('href'),
+            movieDetailURL = $(this).attr('data-movie-url'),
             movieDetailBox = $(this).find('.movie-detail');
 
         console.log(movieDetailURL);
@@ -107,9 +108,8 @@ $(function() {
             window.location.href = movieDetailURL;
         } else {
             movieList.find('.expanded').removeClass('expanded').find('.movie-detail').slideUp();
-            movieDetailBox.slideDown(function() {
-                movieItem.addClass('expanded');
-            });
+            movieItem.addClass('expanded');
+            movieDetailBox.slideDown();
         }
     });
 

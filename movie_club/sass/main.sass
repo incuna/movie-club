@@ -36,8 +36,8 @@
 // Include the sprites by using @include sprite-files-sprite(filename-without-extention)
 // Note that they have to be .png
 // Uncomment the 2 lines below, after adding a directory named sprite-files inside your images directory
-//$sprite-files-layout:smart
-//@import sprite-files/*.png
+$sprite-files-layout:smart
+@import sprite-files/*.png
 
 // Custom mixins not found in compass
 @import globals/mixins
@@ -62,7 +62,7 @@ body
   @include image-replace
   width: 264px
   height: 84px
-  margin: 0 auto
+  margin: 0 auto 25px auto
   background: url(../images/site-logo.png) no-repeat
 
 .search-area
@@ -106,14 +106,29 @@ body
   border:
     top: 1px solid #1a1a1a
     bottom: 1px solid #4b4b4b
+  @extend .clearfix
   .movie-item
-    @extend .clearfix
-    padding: 5%
+    float: left
+    width: 100%
+    padding: 2%
     border:
       top: 1px solid #4b4b4b
       bottom: 1px solid #1a1a1a
+    position: relative
     color: #fff
     cursor: pointer
+    &:after
+      content: ''
+      display: block
+      width: 28px
+      height: 28px
+      position: absolute
+      top: 10px
+      right: 10px
+      @include sprite-files-sprite(movie-item-arrow)
+    &.expanded
+      &:after
+        @include transform(rotate(-90deg))
   .movie-cover
     width: 20%
     float: left
@@ -121,6 +136,8 @@ body
     img
       max-width: 100%
   .movie-title
+    display: block
+    margin: 0 10% 0.5em 0
     color: #fff
     font:
       size: 16px
@@ -135,7 +152,7 @@ body
   .movie-detail
     display: none
     float: left
-    margin: 5% 0 0 0
+    margin: 3% 0 0 0
 
 
   .movie-submitter
@@ -145,3 +162,6 @@ body
       style: italic
   .movie-overview
     margin: 0
+    font:
+      size: 14px
+
