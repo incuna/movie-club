@@ -5,6 +5,10 @@
     <div class="movie">
         <h2><a href="{{ movie.get_absolute_url }}">{{ movie }}</a></h2>
         <img src="{{ movie.thumbnail }}">
+        <p>Submitted by: {{ movie.user }}</p>
+        {% if movie.rating %}
+        <p>{{ movie.rating }}/10</p>
+        <p>{{ movie.overview }}</p>
     </div>
 {% endfor %}
 {% endblock %}
