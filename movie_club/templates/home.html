@@ -2,6 +2,11 @@
 
 {% block content %}
     {% if user.is_authenticated %}
+        <div>
+            <h1>{{ movie }}</h1>
+            <p>Submitted by: {{ movie.user }}</p>
+            <p>{{ movie.overview }}</p>
+        </div>
         <div class="search-area">
             <form action="/" method="post">
                 {% csrf_token %}

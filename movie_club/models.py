@@ -5,6 +5,14 @@ from django.db.models import Avg
 from django.template.defaultfilters import slugify
 
 
+class MovieManager(models.Manager):
+    def current(self):
+        try:
+            return self.get_query_set().filter(when__isnull=False).order_by('-when')[0]
+        except IndexError:
+            return self.get_query_set().none()
+
+
 class Movie(models.Model):
     user = models.ForeignKey('auth.User')
     name = models.CharField(max_length=255)
@@ -12,8 +20,11 @@ class Movie(models.Model):
     overview = models.TextField()
     tmdb_id = models.CharField(max_length=255)
     poster = models.CharField(max_length=255)
+    release_date = models.DateField()
     where = models.CharField(max_length=255, null=True, blank=True)
     when = models.DateTimeField(null=True, blank=True)
+
+    objects = MovieManager()
 
     def __getattribute__(self, name):
         # TODO: Decide on a better way to do this.

@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 from django.conf import settings
@@ -55,27 +56,34 @@ class MovieList(ListView):
     model = Movie
 
 
-class SubmitMovie(TemplateView):
+class Home(TemplateView):
     template_name = 'home.html'
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
-        return super(SubmitMovie, self).dispatch(request, *args, **kwargs)
+        return super(Home, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(Home, self).get_context_data(**kwargs)
+        context['movie'] = Movie.objects.current()
+        return context
 
     def post(self, request, *args, **kwargs):
         data = json.loads(request.POST['movie-data'])
 
-        url = '{0}movie/{1}?api_key={2}'.format(settings.TMDB_API_URL, data['id'], settings.TMDB_API_KEY)
+        args = (settings.TMDB_API_URL, data['id'], settings.TMDB_API_KEY)
+        url = '{0}movie/{1}?api_key={2}'.format(*args)
         r = requests.get(url)
-        overview = json.loads(r.content)['overview']
+        all_data = json.loads(r.content)
 
         Movie.objects.create(
             user=request.user,
             name=data['title'],
             slug=Movie.generate_slug(data['title']),
-            overview=overview,
+            overview=all_data['overview'],
             tmdb_id=data['id'],
-            thumbnail=data['poster_path']
+            poster=data['poster_path'],
+            release_date=datetime.strptime(all_data['release_date'], '%Y-%m-%d')
         )
         return HttpResponseRedirect(reverse('movie-list'))
 
