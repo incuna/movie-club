@@ -1,11 +1,13 @@
 import json
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, ListView, TemplateView
 from django.views.generic.base import View
+import requests
 from social_auth.backends.exceptions import AuthFailed
 from social_auth.views import complete
 
@@ -62,11 +64,16 @@ class SubmitMovie(TemplateView):
 
     def post(self, request, *args, **kwargs):
         data = json.loads(request.POST['movie-data'])
+
+        url = '{0}movie/{1}?api_key={2}'.format(settings.TMDB_API_URL, data['id'], settings.TMDB_API_KEY)
+        r = requests.get(url)
+        overview = json.loads(r.content)['overview']
+
         Movie.objects.create(
             user=request.user,
             name=data['title'],
             slug=Movie.generate_slug(data['title']),
-            overview=data['overview'],
+            overview=overview,
             tmdb_id=data['id'],
             thumbnail=data['poster_path']
         )

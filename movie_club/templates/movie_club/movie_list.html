@@ -8,6 +8,7 @@
         <p>Submitted by: {{ movie.user }}</p>
         {% if movie.rating %}
         <p>{{ movie.rating }}/10</p>
+        {% endif %}
         <p>{{ movie.overview }}</p>
     </div>
 {% endfor %}

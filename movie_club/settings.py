@@ -134,6 +134,8 @@ DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}
 INTERNAL_IPS = ('127.0.0.1',)
 
 # Movie Club
+TMDB_API_KEY = '1db0674dd30f5cb1a979238b9a78b6c4'
+TMDB_API_URL = 'http://api.themoviedb.org/3/'
 TMDB_IMAGE_URL = 'http://cf2.imgobject.com/t/p/'
 
 # Social auth
