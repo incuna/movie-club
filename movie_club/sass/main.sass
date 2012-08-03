@@ -98,6 +98,8 @@ body
       max-width: 50px
       margin: 0 10px 0 0
 
+.clearfix
+  @include clearfix
 
 
 .movie-list
@@ -105,12 +107,19 @@ body
     top: 1px solid #1a1a1a
     bottom: 1px solid #4b4b4b
   .movie-item
-    padding: 2%
+    @extend .clearfix
+    padding: 5%
     border:
       top: 1px solid #4b4b4b
       bottom: 1px solid #1a1a1a
     color: #fff
     cursor: pointer
+  .movie-cover
+    width: 20%
+    float: left
+    margin: 0 3% 0 0
+    img
+      max-width: 100%
   .movie-title
     color: #fff
     font:
@@ -125,6 +134,8 @@ body
 
   .movie-detail
     display: none
+    float: left
+    margin: 5% 0 0 0
 
 
   .movie-submitter

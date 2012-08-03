@@ -1121,43 +1121,69 @@ body {
   margin: 0 10px 0 0;
 }
 
-/* line 103, ../../sass/main.sass */
+/* line 101, ../../sass/main.sass */
+.clearfix, .movie-list .movie-item {
+  zoom: 1;
+}
+/* line 3, ../../sass/globals/_mixins.sass */
+.clearfix:before, .movie-list .movie-item:before, .clearfix:after, .movie-list .movie-item:after {
+  content: "";
+  display: table;
+}
+/* line 6, ../../sass/globals/_mixins.sass */
+.clearfix:after, .movie-list .movie-item:after {
+  clear: both;
+}
+
+/* line 105, ../../sass/main.sass */
 .movie-list {
   border-top: 1px solid #1a1a1a;
   border-bottom: 1px solid #4b4b4b;
 }
-/* line 107, ../../sass/main.sass */
+/* line 109, ../../sass/main.sass */
 .movie-list .movie-item {
-  padding: 2%;
+  padding: 5%;
   border-top: 1px solid #4b4b4b;
   border-bottom: 1px solid #1a1a1a;
   color: white;
   cursor: pointer;
 }
-/* line 114, ../../sass/main.sass */
+/* line 117, ../../sass/main.sass */
+.movie-list .movie-cover {
+  width: 20%;
+  float: left;
+  margin: 0 3% 0 0;
+}
+/* line 121, ../../sass/main.sass */
+.movie-list .movie-cover img {
+  max-width: 100%;
+}
+/* line 123, ../../sass/main.sass */
 .movie-list .movie-title {
   color: white;
   font-size: 16px;
   font-weight: bold;
   text-decoration: none;
 }
-/* line 120, ../../sass/main.sass */
+/* line 129, ../../sass/main.sass */
 .movie-list .movie-rating {
   display: block;
   font-size: 16px;
   font-style: italic;
 }
-/* line 126, ../../sass/main.sass */
+/* line 135, ../../sass/main.sass */
 .movie-list .movie-detail {
   display: none;
+  float: left;
+  margin: 5% 0 0 0;
 }
-/* line 130, ../../sass/main.sass */
+/* line 141, ../../sass/main.sass */
 .movie-list .movie-submitter {
   display: block;
   font-size: 16px;
   font-style: italic;
 }
-/* line 135, ../../sass/main.sass */
+/* line 146, ../../sass/main.sass */
 .movie-list .movie-overview {
   margin: 0;
 }
