@@ -1054,7 +1054,7 @@ input[type="reset"] {
 
 /* line 57, ../../sass/main.sass */
 body {
-  background: url(../images/head-fade.png) left top repeat-x, url(../images/foot-fade.png) left bottom repeat-x, url(../images/site-bg.png) repeat;
+  background: url(../images/site-bg.png) repeat;
 }
 
 /* line 60, ../../sass/main.sass */
