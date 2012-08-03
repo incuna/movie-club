@@ -7,7 +7,11 @@ from django.template.defaultfilters import slugify
 
 class MovieManager(models.Manager):
     def current(self):
-        return self.get_query_set().objects.filter(when__isnull=False).order_by('-when')[0]
+        try:
+            return self.get_query_set().filter(when__isnull=False).order_by('-when')[0]
+        except IndexError:
+            return self.get_query_set().none()
+
 
 class Movie(models.Model):
     user = models.ForeignKey('auth.User')

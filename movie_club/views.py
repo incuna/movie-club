@@ -56,12 +56,17 @@ class MovieList(ListView):
     model = Movie
 
 
-class SubmitMovie(TemplateView):
+class Home(TemplateView):
     template_name = 'home.html'
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
-        return super(SubmitMovie, self).dispatch(request, *args, **kwargs)
+        return super(Home, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(Home, self).get_context_data(**kwargs)
+        context['movie'] = Movie.objects.current()
+        return context
 
     def post(self, request, *args, **kwargs):
         data = json.loads(request.POST['movie-data'])
