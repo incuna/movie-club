@@ -5,6 +5,10 @@ from django.db.models import Avg
 from django.template.defaultfilters import slugify
 
 
+class MovieManager(models.Manager):
+    def current(self):
+        return self.get_query_set().objects.filter(when__isnull=False).order_by('-when')[0]
+
 class Movie(models.Model):
     user = models.ForeignKey('auth.User')
     name = models.CharField(max_length=255)
@@ -15,6 +19,8 @@ class Movie(models.Model):
     release_date = models.DateField()
     where = models.CharField(max_length=255, null=True, blank=True)
     when = models.DateTimeField(null=True, blank=True)
+
+    objects = MovieManager()
 
     def __getattribute__(self, name):
         # TODO: Decide on a better way to do this.
