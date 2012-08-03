@@ -88,6 +88,8 @@ body
     @include image-replace
     background: url(../images/search-icon.png) no-repeat
 
+.select2-container
+  color: #111
 .select2-result
   .movie-item
     img
@@ -101,10 +103,34 @@ body
 .movie-list
   border:
     top: 1px solid #1a1a1a
+    bottom: 1px solid #4b4b4b
   .movie-item
     padding: 2%
     border:
       top: 1px solid #4b4b4b
       bottom: 1px solid #1a1a1a
+    color: #fff
+    cursor: pointer
   .movie-title
-  .movie-image
+    color: #fff
+    font:
+      size: 16px
+      weight: bold
+    text-decoration: none
+  .movie-rating
+    display: block
+    font:
+      size: 16px
+      style: italic
+
+  .movie-detail
+    display: none
+
+
+  .movie-submitter
+    display: block
+    font:
+      size: 16px
+      style: italic
+  .movie-overview
+    margin: 0

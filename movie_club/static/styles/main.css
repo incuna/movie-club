@@ -48,29 +48,30 @@ body {
   font-size: 14px;
   line-height: 1.4;
   height: 100%;
+  color: white;
 }
 
-/* line 66, ../../sass/plugins/_reset.sass */
+/* line 67, ../../sass/plugins/_reset.sass */
 abbr[title] {
   border-bottom: 1px dotted;
 }
 
-/* line 69, ../../sass/plugins/_reset.sass */
+/* line 70, ../../sass/plugins/_reset.sass */
 b, strong {
   font-weight: bold;
 }
 
-/* line 72, ../../sass/plugins/_reset.sass */
+/* line 73, ../../sass/plugins/_reset.sass */
 blockquote {
   margin: 1em 40px;
 }
 
-/* line 75, ../../sass/plugins/_reset.sass */
+/* line 76, ../../sass/plugins/_reset.sass */
 dfn {
   font-style: italic;
 }
 
-/* line 78, ../../sass/plugins/_reset.sass */
+/* line 79, ../../sass/plugins/_reset.sass */
 hr {
   display: block;
   height: 1px;
@@ -80,14 +81,14 @@ hr {
   padding: 0;
 }
 
-/* line 86, ../../sass/plugins/_reset.sass */
+/* line 87, ../../sass/plugins/_reset.sass */
 ins {
   background: #ffff99;
   color: black;
   text-decoration: none;
 }
 
-/* line 91, ../../sass/plugins/_reset.sass */
+/* line 92, ../../sass/plugins/_reset.sass */
 mark {
   background: yellow;
   color: black;
@@ -95,40 +96,40 @@ mark {
   font-weight: bold;
 }
 
-/* line 97, ../../sass/plugins/_reset.sass */
+/* line 98, ../../sass/plugins/_reset.sass */
 p {
   margin: 0 0 1.5em 0;
 }
 
-/* line 102, ../../sass/plugins/_reset.sass */
+/* line 103, ../../sass/plugins/_reset.sass */
 pre, code, kbd, samp {
   font-family: Menlo, Monaco, "Courier New", monospace;
   font-size: 1em;
 }
 
-/* line 108, ../../sass/plugins/_reset.sass */
+/* line 109, ../../sass/plugins/_reset.sass */
 pre {
   white-space: pre;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
-/* line 113, ../../sass/plugins/_reset.sass */
+/* line 114, ../../sass/plugins/_reset.sass */
 q {
   quotes: none;
 }
-/* line 115, ../../sass/plugins/_reset.sass */
+/* line 116, ../../sass/plugins/_reset.sass */
 q:before, q:after {
   content: "";
   content: none;
 }
 
-/* line 119, ../../sass/plugins/_reset.sass */
+/* line 120, ../../sass/plugins/_reset.sass */
 small {
   font-size: 85%;
 }
 
-/* line 124, ../../sass/plugins/_reset.sass */
+/* line 125, ../../sass/plugins/_reset.sass */
 sub {
   font-size: 75%;
   line-height: 0;
@@ -136,7 +137,7 @@ sub {
   vertical-align: baseline;
 }
 
-/* line 130, ../../sass/plugins/_reset.sass */
+/* line 131, ../../sass/plugins/_reset.sass */
 sup {
   font-size: 75%;
   line-height: 0;
@@ -145,23 +146,23 @@ sup {
   top: -0.5em;
 }
 
-/* line 137, ../../sass/plugins/_reset.sass */
+/* line 138, ../../sass/plugins/_reset.sass */
 sub {
   bottom: -0.25em;
 }
 
-/* line 144, ../../sass/plugins/_reset.sass */
+/* line 145, ../../sass/plugins/_reset.sass */
 ul, ol {
   margin: 1em 0;
   padding: 0 0 0 40px;
 }
 
-/* line 148, ../../sass/plugins/_reset.sass */
+/* line 149, ../../sass/plugins/_reset.sass */
 dd {
   margin: 0 0 0 40px;
 }
 
-/* line 150, ../../sass/plugins/_reset.sass */
+/* line 151, ../../sass/plugins/_reset.sass */
 nav ul, nav ol {
   list-style: none;
   list-style-image: none;
@@ -169,24 +170,24 @@ nav ul, nav ol {
   padding: 0;
 }
 
-/* line 163, ../../sass/plugins/_reset.sass */
+/* line 164, ../../sass/plugins/_reset.sass */
 img {
   border: 0;
   -ms-interpolation-mode: bicubic;
   vertical-align: middle;
 }
 
-/* line 170, ../../sass/plugins/_reset.sass */
+/* line 171, ../../sass/plugins/_reset.sass */
 svg:not(:root) {
   overflow: hidden;
 }
 
-/* line 179, ../../sass/plugins/_reset.sass */
+/* line 180, ../../sass/plugins/_reset.sass */
 label {
   cursor: pointer;
 }
 
-/* line 185, ../../sass/plugins/_reset.sass */
+/* line 186, ../../sass/plugins/_reset.sass */
 legend {
   border: 0;
   *margin-left: -7px;
@@ -194,7 +195,7 @@ legend {
   white-space: normal;
 }
 
-/* line 195, ../../sass/plugins/_reset.sass */
+/* line 196, ../../sass/plugins/_reset.sass */
 button, input, select, textarea {
   font-size: 100%;
   margin: 0;
@@ -202,63 +203,63 @@ button, input, select, textarea {
   *vertical-align: middle;
 }
 
-/* line 203, ../../sass/plugins/_reset.sass */
+/* line 204, ../../sass/plugins/_reset.sass */
 button, input {
   line-height: normal;
 }
 
-/* line 210, ../../sass/plugins/_reset.sass */
+/* line 211, ../../sass/plugins/_reset.sass */
 button {
   cursor: pointer;
   -webkit-appearance: button;
   *overflow: visible;
 }
 
-/* line 216, ../../sass/plugins/_reset.sass */
+/* line 217, ../../sass/plugins/_reset.sass */
 input[type="button"], input[type="reset"], input[type="submit"] {
   cursor: pointer;
   -webkit-appearance: button;
   *overflow: visible;
 }
-/* line 220, ../../sass/plugins/_reset.sass */
+/* line 221, ../../sass/plugins/_reset.sass */
 input[type="checkbox"], input[type="radio"] {
   box-sizing: border-box;
   padding: 0;
   *width: 13px;
   *height: 13px;
 }
-/* line 225, ../../sass/plugins/_reset.sass */
+/* line 226, ../../sass/plugins/_reset.sass */
 input[type="search"] {
   -webkit-appearance: textfield;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
-/* line 230, ../../sass/plugins/_reset.sass */
+/* line 231, ../../sass/plugins/_reset.sass */
 input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
 
-/* line 235, ../../sass/plugins/_reset.sass */
+/* line 236, ../../sass/plugins/_reset.sass */
 button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 
-/* line 242, ../../sass/plugins/_reset.sass */
+/* line 243, ../../sass/plugins/_reset.sass */
 textarea {
   overflow: auto;
   vertical-align: top;
   resize: vertical;
 }
 
-/* line 251, ../../sass/plugins/_reset.sass */
+/* line 252, ../../sass/plugins/_reset.sass */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 255, ../../sass/plugins/_reset.sass */
+/* line 256, ../../sass/plugins/_reset.sass */
 td {
   vertical-align: top;
 }
@@ -1107,7 +1108,12 @@ body {
   background: url(../images/search-icon.png) no-repeat;
 }
 
-/* line 93, ../../sass/main.sass */
+/* line 91, ../../sass/main.sass */
+.select2-container {
+  color: #111111;
+}
+
+/* line 95, ../../sass/main.sass */
 .select2-result .movie-item img {
   display: inline-block;
   vertical-align: top;
@@ -1115,13 +1121,43 @@ body {
   margin: 0 10px 0 0;
 }
 
-/* line 101, ../../sass/main.sass */
+/* line 103, ../../sass/main.sass */
 .movie-list {
   border-top: 1px solid #1a1a1a;
+  border-bottom: 1px solid #4b4b4b;
 }
-/* line 104, ../../sass/main.sass */
+/* line 107, ../../sass/main.sass */
 .movie-list .movie-item {
   padding: 2%;
   border-top: 1px solid #4b4b4b;
   border-bottom: 1px solid #1a1a1a;
+  color: white;
+  cursor: pointer;
+}
+/* line 114, ../../sass/main.sass */
+.movie-list .movie-title {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+/* line 120, ../../sass/main.sass */
+.movie-list .movie-rating {
+  display: block;
+  font-size: 16px;
+  font-style: italic;
+}
+/* line 126, ../../sass/main.sass */
+.movie-list .movie-detail {
+  display: none;
+}
+/* line 130, ../../sass/main.sass */
+.movie-list .movie-submitter {
+  display: block;
+  font-size: 16px;
+  font-style: italic;
+}
+/* line 135, ../../sass/main.sass */
+.movie-list .movie-overview {
+  margin: 0;
 }
