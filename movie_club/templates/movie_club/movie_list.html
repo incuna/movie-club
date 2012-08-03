@@ -11,7 +11,7 @@
 <div class="movie-list">
 {% for movie in object_list %}
     <div class="movie-item" data-movie-url="{{ movie.get_absolute_url }}">
-        <div class="movie-cover"><img src="{{ movie.thumbnail }}"></div>
+        <div class="movie-cover"><img src="{{ movie.poster }}"></div>
         <span class="movie-title">{{ movie }}</span>
         <span class="movie-submitter">Submitted by: {{ movie.user }}</span>
         <span class="movie-rating">{% if movie.score %}{{ movie.score }}/10{% else %}Not yet rated.{% endif %}</span>

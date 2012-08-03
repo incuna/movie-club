@@ -35,7 +35,7 @@ class Movie(models.Model):
     def __getattribute__(self, name):
         # TODO: Decide on a better way to do this.
         # Do we really need to generate this? Silly API.
-        if name == 'thumbnail':
+        if name == 'poster':
             return settings.TMDB_IMAGE_URL + 'w500' + object.__getattribute__(self, name)
         return object.__getattribute__(self, name)
 
