@@ -84,5 +84,5 @@ class Rating(models.Model):
         unique_together = ('movie', 'user')
 
     def __unicode__(self):
-        return self.score
+        return '{0}: {1} ({2})'.format(self.movie, str(self.score), self.user)
 
