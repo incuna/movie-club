@@ -2,7 +2,7 @@ import json
 
 from django.core.urlresolvers import reverse
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, ListView, TemplateView
 from django.views.generic.base import View
@@ -61,10 +61,6 @@ class SubmitMovie(TemplateView):
         return super(SubmitMovie, self).dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        # if not request.is_ajax():
-        #     return HttpResponseBadRequest()
-
-        print request.POST
         data = json.loads(request.POST['movie-data'])
         Movie.objects.create(
             user=request.user,
@@ -73,5 +69,5 @@ class SubmitMovie(TemplateView):
             tmdb_id=data['id'],
             thumbnail=data['poster_path']
         )
-
         return HttpResponseRedirect(reverse('movie-list'))
+
