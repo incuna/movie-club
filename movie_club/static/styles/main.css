@@ -1055,6 +1055,18 @@ input[type="reset"] {
   zoom: 1;
   *display: inline;
   cursor: pointer;
+  color: white;
+  padding: 5px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0.23)), color-stop(100%, rgba(255, 255, 255, 0.7)));
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.23) 0%, rgba(255, 255, 255, 0.7) 100%);
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.23) 0%, rgba(255, 255, 255, 0.7) 100%);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 0.23) 0%, rgba(255, 255, 255, 0.7) 100%);
+  -pie-background: linear-gradient(top, rgba(255, 255, 255, 0.23) 0%, rgba(255, 255, 255, 0.7) 100%);
+  background: linear-gradient(top, rgba(255, 255, 255, 0.23) 0%, rgba(255, 255, 255, 0.7) 100%);
 }
 
 /* line 57, ../../sass/main.sass */
@@ -1140,12 +1152,12 @@ body {
   clear: both;
 }
 
-/* line 105, ../../sass/main.sass */
+/* line 104, ../../sass/main.sass */
 .movie-list {
   border-top: 1px solid #1a1a1a;
   border-bottom: 1px solid #4b4b4b;
 }
-/* line 110, ../../sass/main.sass */
+/* line 109, ../../sass/main.sass */
 .movie-list .movie-item {
   float: left;
   width: 100%;
@@ -1156,7 +1168,7 @@ body {
   color: white;
   cursor: pointer;
 }
-/* line 120, ../../sass/main.sass */
+/* line 119, ../../sass/main.sass */
 .movie-list .movie-item:after {
   content: "";
   display: block;
@@ -1167,7 +1179,7 @@ body {
   right: 10px;
   background-position: 0 0;
 }
-/* line 130, ../../sass/main.sass */
+/* line 129, ../../sass/main.sass */
 .movie-list .movie-item.expanded:after {
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -1175,17 +1187,17 @@ body {
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
-/* line 132, ../../sass/main.sass */
+/* line 131, ../../sass/main.sass */
 .movie-list .movie-cover {
   width: 20%;
   float: left;
   margin: 0 3% 0 0;
 }
-/* line 136, ../../sass/main.sass */
+/* line 135, ../../sass/main.sass */
 .movie-list .movie-cover img {
   max-width: 100%;
 }
-/* line 138, ../../sass/main.sass */
+/* line 137, ../../sass/main.sass */
 .movie-list .movie-title {
   display: block;
   margin: 0 10% 0.5em 0;
@@ -1194,25 +1206,25 @@ body {
   font-weight: bold;
   text-decoration: none;
 }
-/* line 146, ../../sass/main.sass */
+/* line 145, ../../sass/main.sass */
 .movie-list .movie-rating {
   display: block;
   font-size: 16px;
   font-style: italic;
 }
-/* line 152, ../../sass/main.sass */
+/* line 151, ../../sass/main.sass */
 .movie-list .movie-detail {
   display: none;
   float: left;
   margin: 3% 0 0 0;
 }
-/* line 158, ../../sass/main.sass */
+/* line 157, ../../sass/main.sass */
 .movie-list .movie-submitter {
   display: block;
   font-size: 16px;
   font-style: italic;
 }
-/* line 163, ../../sass/main.sass */
+/* line 162, ../../sass/main.sass */
 .movie-list .movie-overview {
   margin: 0;
   font-size: 14px;

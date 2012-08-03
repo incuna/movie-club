@@ -15,7 +15,9 @@
                 <input type="submit" value="Search">
             </form>
         </div>
+
+        <a href="{% url movie-list %}" class="button">List...</a>
     {% else %}
-        <a href="{% url socialauth_begin 'google-oauth2' %}">Log in</a>
+        <a href="{% url socialauth_begin 'google-oauth2' %}" class="button">Log in</a>
     {% endif %}
 {% endblock %}
